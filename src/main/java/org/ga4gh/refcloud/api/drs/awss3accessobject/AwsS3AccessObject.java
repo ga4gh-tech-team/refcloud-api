@@ -1,9 +1,7 @@
-package org.ga4gh.refcloud.api.drs.drsobjectchecksum;
+package org.ga4gh.refcloud.api.drs.awss3accessobject;
 
 import org.ga4gh.refcloud.api.drs.drsobject.DrsObject;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
-import jakarta.persistence.Column;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,23 +16,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "drs_object_checksum")
+@Table(name = "aws_s3_access_object")
 @Setter
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class DrsObjectChecksum {
+public class AwsS3AccessObject {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String checksum;
+    private String region;
 
-    @JdbcTypeCode(SqlTypes.NAMED_ENUM)
-    @Column(name = "type")
-    private DrsChecksumType type;
+    private String bucket;
+
+    private String key;
 
     @ManyToOne
     @JoinColumn(name = "drs_object_id")
